@@ -12,6 +12,9 @@
 # 在 src/server文件夹下打开命令行
 
 node index.js
+
+# 或者 npm i -g nodemon，然后：
+nodemon index.js
 ```
 
 ## 启动前端代码

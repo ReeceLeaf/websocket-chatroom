@@ -12,7 +12,8 @@
     "lodash": "^4.17.21",
     "mint-ui": "^2.2.13",
     "smoothscroll-polyfill": "^0.4.4",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "ws": "^8.4.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
