@@ -1,0 +1,223 @@
+body {
+}
+.container {
+  width: 360px;
+  height: 640px;
+  margin: 0 auto;
+  font-size: 16px;
+  position: relative;
+}
+.title {
+  position: absolute;
+  width: 120px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+}
+.navbar {
+  width: 100%;
+  position: absolute;
+  top: 20px;
+  height: 30px;
+}
+.back {
+  border-right: 1px solid #fff;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 0 20px 20px 0;
+  font-size: 14px;
+  color: #fff;
+  padding: 2px 8px;
+}
+.bgImage {
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  padding: 0;
+  height: 100%;
+  background-image: url("./images/bg_chatroom.jpeg");
+  color: #fff;
+  box-sizing: border-box;
+  padding-bottom: 80px;
+  display: flex;
+  flex-direction: column;
+}
+.button {
+  width: 112px;
+}
+.cardList {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+.openBg {
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 100%;
+  background-image: url("./images/bg_open.jpeg");
+  padding: 0 20px;
+  box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.itemCard {
+  width: 160px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  &:nth-child(2n) {
+    margin-left: 10px;
+  }
+  
+}
+.pic {
+  width: 150px;
+  height: 150px;
+  border-radius: 16px;
+  border: 1px solid #bd9e2d;
+  cursor: pointer;
+}
+.text {
+  font-size: 16px;
+  color: #7f39b3;
+  font-weight: bold;
+  margin-top: 8px;
+}
+.userInfo {
+  height: 120px;
+  padding-top: 80px;
+  box-sizing: border-box;
+}
+.nameInputBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.nameInput {
+  outline: none;
+  border: none;
+  border-radius: 2px;
+  padding: 2px 8px;
+  height: 20px;
+  font-size: 15px;
+}
+.nameConfirmBtn {
+  width: 60px;
+  margin-left: 16px;
+  border-radius: 13px;
+  padding: 0 12px;
+  height: 26px;
+  font-size: 14px;
+  color: #fff;
+  background: #208CFF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.roomInfo {
+  height: 80px;
+  padding-top: 40px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.roomNickname {
+  margin-right: 8px;
+  font-weight: bold;
+  font-size: 16px;
+}
+.onLineBox {
+  min-width: 100px;
+  padding: 0 20px;
+  margin-left: 20px;
+  box-sizing: border-box;
+  height: 30px;
+  border-radius: 10.66667vw;
+  background: rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  font-size: 14px;
+  line-height: 30px;
+}
+.nickname {
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+}
+.msgBox {
+  font-size: 14px;
+  flex: 1;
+  overflow-y: scroll;
+}
+.msgPanel {
+}
+.msgItem {
+  padding: 0 20px;
+  margin-top: 8px;
+  text-align: left;
+}
+.msgItem:first-child {
+  margin-top: 0;
+}
+.msgItem.selfItem {
+  text-align: right;
+}
+
+.msgFooter {
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  box-sizing: border-box;
+  height: 30px;
+}
+.msgInput {
+  width: 200px;
+  outline: none;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 8px;
+  background: rgba(0, 0, 0, 0.2);
+  caret-color: #fff;
+  color: #fff;
+  font-size: 14px;
+}
+.msgInput::placeholder {
+  color: #fff;
+  font-size: 14px;
+}
+.msgBtn {
+  width: 60px;
+  margin-left: 16px;
+  border-radius: 13px;
+  padding: 0 12px;
+  height: 26px;
+  font-size: 14px;
+  color: #fff;
+  background: #208CFF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  cursor: pointer;
+}
