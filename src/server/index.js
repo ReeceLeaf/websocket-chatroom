@@ -11,7 +11,7 @@ wss.on('connection', function (ws) {
   ws.heartBeatTimeIntervalObj = -1
   ws.heartBeatTimeoutObj = -1
 
-  // 监听心跳定时器，如果长时间没有心跳，自动断开连接
+  // Listen to the heartbeat timer, if there is no heartbeat for a long time, it will automatically disconnect
   const setHeartBeatTimeout = () => {
     if (ws.heartBeatTimeoutObj !== -1) {
       clearTimeout(ws.heartBeatTimeoutObj)

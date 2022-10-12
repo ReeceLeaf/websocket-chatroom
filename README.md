@@ -1,35 +1,33 @@
-# 聊天室代码demo启动
+# Chatroom code demo starts
 
-## demo演示
+## demo
 
-![demo1.gif](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/10b726de29f74f759df9ed1fb51ea96d~tplv-k3u1fbpfcp-watermark.image?)
+[experience it](http://socket.vjscoder.com/websocket-chatroom/index.html#/)
 
-[看演示不过瘾，我也要玩一下](http://socket.vjscoder.com/websocket-chatroom/index.html#/)
-
-## 启动本地服务器
+## start local server
 
 ```bash
-# 在 src/server文件夹下打开命令行
+# Open the command line under the src/server folder
 
 node index.js
 
-# 或者 npm i -g nodemon，然后：
+# or npm i -g nodemon，then：
 nodemon index.js
 ```
 
-## 启动前端代码
+## Start the front-end code
 
 ``` bash
 npm install
 ```
 
-## 启动
+## Start
 
 ```bash
 npm run serve
 ```
 
-## 打包
+## Build
 
 ```bash
 npm run build

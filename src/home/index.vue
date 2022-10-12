@@ -1,16 +1,16 @@
 <template>
   <div class="container">
     <div class="navbar">
-      <div v-if="roomOpen" class="back" @click="back">返回</div>
+      <div v-if="roomOpen" class="back" @click="back">back</div>
       <div class="title">{{ title }}</div>
     </div>
     <div v-if="!roomOpen"  class="openBg">
       <div class="userInfo">
         <div v-if="!nickname" class="nameInputBox">
-          <input type="text" class="nameInput" v-model="inputname" placeholder="请输入昵称" @keydown="nameKeydown" />
-          <div class="nameConfirmBtn" @click="certainName">确认</div>
+          <input type="text" class="nameInput" v-model="inputname" placeholder="Enter your nickname" @keydown="nameKeydown" />
+          <div class="nameConfirmBtn" @click="certainName">confirm</div>
         </div>
-        <div v-else class="nickname">昵称：{{ nickname }}</div>
+        <div v-else class="nickname">nickname：{{ nickname }}</div>
       </div>
       <div class="cardList">
         <div class="itemCard" @click="enterRoom(item)" v-for="(item, i) in roomList" :key="i">
@@ -22,8 +22,8 @@
     <div v-else class="bgImage" >
       <div class="roomInfo">
         <div class="onLineBox">
-          昵称：<span class="roomNickname">{{ this.nickname }}</span>
-          在线人数：{{ this.onlineNum }}
+          nickname：<span class="roomNickname">{{ this.nickname }}</span>
+          online：{{ this.onlineNum }}
         </div>
       </div>
       <div class="msgBox" ref="msgWrap" @scroll="listScroll">
@@ -31,14 +31,14 @@
           <div :class="['msgItem', item.self && 'selfItem']" v-for="(item, i) in msgList" :key="i">
             <span v-if="!item.self && item.name" style="font-weight: 500; font-size: 15px;color: #1d688c">{{ item.name }} : </span>
             <span :style="{ color: currentRoomInfo.msgColor }">{{ item.content }}</span>
-            <span v-if="item.self" style="font-weight: 500; font-size: 15px; color: #1d688c"> : 我</span>
+            <span v-if="item.self" style="font-weight: 500; font-size: 15px; color: #1d688c"> : me</span>
           </div>
         </div>
       </div>
       
       <div class="msgFooter">
-        <input class="msgInput" type="text" v-model="inputMsg" placeholder="请输入发言内容" @keydown="sendInputKeydown" />
-        <div class="msgBtn" @click="sendMsg">发言</div>
+        <input class="msgInput" type="text" v-model="inputMsg" placeholder="Please enter your speech" @keydown="sendInputKeydown" />
+        <div class="msgBtn" @click="sendMsg">speak</div>
       </div>
     </div>
   </div>
@@ -80,7 +80,7 @@ export default {
   },
   computed: {
     title() {
-      return this.roomOpen ? this.currentRoomInfo.name : '首页'
+      return this.roomOpen ? this.currentRoomInfo.name : 'home'
     },
   },  
   watch: {
@@ -105,7 +105,7 @@ export default {
   },
   methods: {
     enterRoom (item) {
-      if (!this.nickname) return Toast('先起个好听的名字吧～')
+      if (!this.nickname) return Toast('Come up with a nice name～')
       this.navbarProps = { ...this.navbarProps, title: item.name }
       this.currentRoomInfo = item
 
@@ -123,7 +123,7 @@ export default {
           event: 'login',
         }))
 
-        // 心跳定时器逻辑
+        // Heartbeat Timer Logic
         if (this.heartbeatTimer !== -1) {
           clearInterval(this.heartbeatTimer)
           this.heartbeatTimer = -1
@@ -134,8 +134,8 @@ export default {
             this.heartBeatTimeoutJob = -1
           }
           this.heartBeatTimeoutJob = setTimeout(() => {
-            console.log('心跳超时')
-            // 需要重连
+            console.log('heartbeat timeout')
+            // need to reconnect
           }, 10000)
 
           this.ws.send(JSON.stringify({
@@ -161,12 +161,12 @@ export default {
         this.onlineNum = data.num
         if (data.event === 'login') {
           this.msgList.push({
-            content: `欢迎${data.userName}进入${data.roomName}房间～`,
+            content: `welcome ${data.userName} into room ${data.roomName}`,
           })
         } else if (data.event === 'logout') {
           console.log('logout', data)
           this.msgList.push({
-            content: `${data.userName}离开房间`,
+            content: `${data.userName}leave the room`,
           })
         } else {
           const self = this.userId === data.userId
@@ -181,7 +181,7 @@ export default {
 
       this.ws.onclose = () => {
         this.removeAllTimeJob()
-        Toast('您已离开房间')
+        Toast('you have left the room')
         this.roomOpen = false
         this.msgList = []
         this.onlineNum = 0
@@ -191,7 +191,7 @@ export default {
       this.ws = new WebSocket('ws://localhost:9001')
     },
     sendMsg () {
-      if (!this.inputMsg.trim().length) return Toast('发言不能为空～')
+      if (!this.inputMsg.trim().length) return Toast('Statement cannot be empty~')
       this.isSending = true
       
       this.ws.send(JSON.stringify({
@@ -201,7 +201,7 @@ export default {
         roomName: this.currentRoomInfo.name,
         content: this.inputMsg.trim(),
       }))
-      // 本地默认显示
+      // local default display
       this.msgList.push({
         content: `${this.inputMsg}`,
         name: this.nickname,
@@ -223,7 +223,7 @@ export default {
       this.onlineNum = 0
       this.close()
       Toast({
-        content: '您已退出房间',
+        content: 'you have left the room',
         duration: 1000,
       })
     },
@@ -232,17 +232,17 @@ export default {
         this.nickname = this.inputname.trim()
         this.userId = `${+new Date()}`
       } else {
-        Toast('用户名不能为空！')
+        Toast('Username can not be empty！')
       }
     },
-    // 移除所有定时器
+    // remove all timers
     removeAllTimeJob() {
       clearInterval(this.heartbeatTimer)
       this.heartbeatTimer = -1
       clearTimeout(this.heartBeatTimeoutJob)
       this.heartBeatTimeoutJob = -1
     },
-    msgChange() { // 监听消息列表变化以自动滚动到最新消息
+    msgChange() { // Listen for changes in the message list to automatically scroll to the latest message
       if (this.scrollBottomTimeId) {
         clearTimeout(this.scrollBottomTimeId)
         this.scrollBottomTimeId = null
@@ -254,8 +254,8 @@ export default {
         }
         this.$nextTick(() => {
           const listHeight = this.msgListRef.offsetHeight
-          const diff = listHeight - this.wrapperHeight // 列表高度与容器高度差值
-          const top = this.msgWrapRef.scrollTop // 列表滚动高度
+          const diff = listHeight - this.wrapperHeight // The difference between the height of the list and the height of the container
+          const top = this.msgWrapRef.scrollTop // List scroll height
           if (diff - top > 10) {
             if (this.isBindScrolled) {
               this.isBindScrolled = false
