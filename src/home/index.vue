@@ -188,7 +188,7 @@ export default {
       }
     },
     connect () {
-      this.ws = new WebSocket('ws://49.234.194.68:9001/')
+      this.ws = new WebSocket('ws://localhost:9001/')
     },
     sendMsg () {
       if (!this.inputMsg.trim().length) return Toast('Statement cannot be empty~')
